@@ -1434,24 +1434,47 @@ async function carregarDadosDaNuvem() {
     if (response.ok) {
       const data = await response.json();
       if (data) {
-        if (data.clientes && Array.isArray(data.clientes)) {
-          clientes = data.clientes;
+        if (data.clientes && Array.isArray(data.clientes) && data.clientes.length > 0) {
+          // Fusão inteligente: mescla dados da nuvem com os dados locais sem apagar projetos/processos criados recentemente
+          data.clientes.forEach(cloudClient => {
+            const localIdx = clientes.findIndex(c => c.id === cloudClient.id || (c.nome && cloudClient.nome && c.nome.toLowerCase().trim() === cloudClient.nome.toLowerCase().trim()));
+            if (localIdx >= 0) {
+              const localClient = clientes[localIdx];
+              // Mescla projetos preservando os criados localmente
+              const projMap = new Map();
+              (cloudClient.projetos || []).forEach(p => projMap.set(p.id, p));
+              (localClient.projetos || []).forEach(p => {
+                if (!projMap.has(p.id)) {
+                  projMap.set(p.id, p);
+                } else {
+                  const cloudProj = projMap.get(p.id);
+                  const procMap = new Map();
+                  (cloudProj.processos || []).forEach(pr => procMap.set(pr.id, pr));
+                  (p.processos || []).forEach(pr => procMap.set(pr.id, pr));
+                  cloudProj.processos = Array.from(procMap.values());
+                }
+              });
+              cloudClient.projetos = Array.from(projMap.values());
+              clientes[localIdx] = Object.assign({}, localClient, cloudClient);
+            } else {
+              clientes.push(cloudClient);
+            }
+          });
           salvarClientes();
         }
-        if (data.biblioteca && Array.isArray(data.biblioteca)) {
-          biblioteca = data.biblioteca;
+        if (data.biblioteca && Array.isArray(data.biblioteca) && data.biblioteca.length > 0) {
+          const bibMap = new Map();
+          data.biblioteca.forEach(b => bibMap.set(b.id, b));
+          biblioteca.forEach(b => { if (!bibMap.has(b.id)) bibMap.set(b.id, b); });
+          biblioteca = Array.from(bibMap.values());
           salvarBiblioteca();
         }
-        if (data.admins && Array.isArray(data.admins)) {
-          admins = data.admins;
-          salvarAdmins();
-        }
-        console.log("[SEQLIST Nuvem] Dados carregados e sincronizados da nuvem com sucesso!");
+        console.log("[SEQLIST Nuvem] Fusão inteligente de clientes, projetos e processos concluída com sucesso!");
         return true;
       }
     }
   } catch (error) {
-    console.log("[SEQLIST Nuvem] Consulta de dados da nuvem mantida via fallback/local.");
+    console.log("[SEQLIST Nuvem] Consulta mantida no armazenamento local.");
   }
   return false;
 }
@@ -4845,7 +4868,15 @@ function confirmarAtribuicaoProcesso(){
 
 carregarPrefs();
 carregarBiblioteca();
+carregarClientes();
 navegar('acesso');
+
+// Sincronização automática contínua da nuvem ao iniciar a aplicação
+carregarDadosDaNuvem().then(() => {
+  if (AppState.telaAtual === 'admin') renderAdmin();
+  else if (AppState.telaAtual === 'hub-cliente') renderHubCliente();
+  else if (AppState.telaAtual === 'hub-projeto') renderHubProjeto();
+}).catch(() => {});
 </script>
 </body>
 </html>
