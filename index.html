@@ -1,6 +1,7 @@
 
 <!DOCTYPE html>
-<html lang="pt-BR" data-tema="custom" data-modo="claro"><head>
+<html lang="pt-BR" data-tema="chumbo" data-modo="claro">
+<head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>FNW SEQLIST MÃE · Plataforma Master</title>
@@ -20,7 +21,7 @@
   })();
 </script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&amp;family=DM+Sans:wght@300;400;500;600&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
 :root {
   --bg:#E1E8E8;--bg2:#D0DADA;--surface:#FFFFFF;--accent:#343B3B;--accent2:#4A5555;--accent3:#5A7A72;--texto:#343B3B;--texto-s:#5A6666;--linha:#B8C8C8;--topo-bg:#FFFFFF;--topo-shadow:rgba(52,59,59,0.08);
@@ -481,26 +482,28 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--texto);mi
 
 @media(max-width:480px){.processos-grid,.clientes-grid{grid-template-columns:1fr;}.ef-row{grid-template-columns:1fr;}}
 </style>
-<link id="gfont-outfit" rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800&amp;display=swap"></head>
+</head>
 <body>
 
 <!-- ══ TELA DE ACESSO ══ -->
-<div id="tela-acesso" style="display: none;">
+<div id="tela-acesso">
   <div class="acesso-card">
-    <div class="acesso-logo" style="display:flex;justify-content:center;margin-bottom:1.2rem"><span class="logo-texto-render" style="font-family:'Outfit',serif;font-size:20px;font-weight:700;color:var(--accent);letter-spacing:.03em;transition:all .3s ease">EHO - Organização, leveza e praticidade</span></div>
-    <div class="acesso-sub">by FNW · Assessoria em Tecnologia &amp; Negócios</div>
+    <div class="acesso-logo" style="display:flex;justify-content:center;margin-bottom:1.2rem">
+      <div class="logo-tinted logo-img-main" style="width:220px;height:70px;-webkit-mask-image:url('https://d1yei2z3i6k35z.cloudfront.net/3119789/69f59543269857.76143509_BetaLogoSEQLIST2.png');mask-image:url('https://d1yei2z3i6k35z.cloudfront.net/3119789/69f59543269857.76143509_BetaLogoSEQLIST2.png');"></div>
+    </div>
+    <div class="acesso-sub">by FNW · Assessoria em Tecnologia & Negócios</div>
 
     <!-- Abas de Alternância -->
     <div class="acesso-tab-bar">
-      <button type="button" class="acesso-tab" id="tab-acesso-cliente" onclick="alternarAbaAcesso('cliente')">� Acesso Cliente</button>
-      <button type="button" class="acesso-tab ativo" id="tab-acesso-admin" onclick="alternarAbaAcesso('admin')">� Gestor / Admin</button>
+      <button type="button" class="acesso-tab ativo" id="tab-acesso-cliente" onclick="alternarAbaAcesso('cliente')">&#128100; Acesso Cliente</button>
+      <button type="button" class="acesso-tab" id="tab-acesso-admin" onclick="alternarAbaAcesso('admin')">&#128273; Gestor / Admin</button>
     </div>
 
     <!-- BLOCO CLIENTE -->
-    <div id="painel-acesso-cliente" style="display: none;">
+    <div id="painel-acesso-cliente">
       <label class="acesso-label" style="display:flex;align-items:center;justify-content:space-between">
         <span>E-mail ou Código de Acesso</span>
-        <button type="button" class="btn-ditado" onclick="alternarDitadoVoz('input-codigo', this)">� Ditar</button>
+        <button type="button" class="btn-ditado" onclick="alternarDitadoVoz('input-codigo', this)">&#127897; Ditar</button>
       </label>
       <input class="acesso-input" id="input-codigo" type="text" placeholder="Digite seu e-mail ou código de acesso" onkeydown="if(event.key==='Enter')entrarPorCodigo()">
       <button class="btn-entrar" onclick="entrarPorCodigo()">Entrar →</button>
@@ -510,7 +513,7 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--texto);mi
       <div class="acesso-import-wrap">
         <div class="acesso-divisor"><span>ou</span></div>
         <label class="btn-importar-acesso">
-          ⬆ Importar chave de acesso (.json)
+          &#11014; Importar chave de acesso (.json)
           <input type="file" accept=".json" style="display:none" onchange="importarAcesso(event)">
         </label>
         <div class="acesso-import-hint">Recebeu um arquivo de acesso da FNW? Carregue aqui.</div>
@@ -519,16 +522,16 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--texto);mi
     </div>
 
     <!-- BLOCO ADMIN / GESTOR -->
-    <div id="painel-acesso-admin" style="display: block;">
+    <div id="painel-acesso-admin" style="display:none">
       <div style="background:var(--bg2);border:1.5px solid var(--linha);border-radius:14px;padding:1.2rem;margin-top:.4rem;text-align:left">
         <div style="font-size:.8rem;font-weight:700;color:var(--accent);margin-bottom:.3rem;display:flex;align-items:center;gap:.4rem">
-          � Painel de Gestores &amp; Master
+          &#128273; Painel de Gestores & Master
         </div>
         <div style="font-size:.72rem;color:var(--texto-s);margin-bottom:.9rem;line-height:1.4">Digite a sua senha de Gestor (ex: `alfa2025`) ou a senha Master FNW.</div>
         
         <label class="acesso-label" style="display:flex;align-items:center;justify-content:space-between">
           <span>Senha de Gestor / Admin</span>
-          <button type="button" class="btn-ditado" onclick="alternarDitadoVoz('input-senha', this)">� Ditar</button>
+          <button type="button" class="btn-ditado" onclick="alternarDitadoVoz('input-senha', this)">&#127897; Ditar</button>
         </label>
         <input class="acesso-input" id="input-senha" type="password" placeholder="Sua senha de gestor" onkeydown="if(event.key==='Enter')entrarAdmin()" style="margin-bottom:.8rem">
         <button class="btn-entrar" onclick="entrarAdmin()" style="background:var(--accent);color:#fff">Entrar no Painel →</button>
@@ -538,7 +541,7 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--texto);mi
     <!-- SELETOR COMPACTO DE APARÊNCIA DA TELA DE ACESSO -->
     <div style="position:relative;margin-top:1.5rem;display:flex;justify-content:center;">
       <button class="btn-aparencia" id="btn-aparencia-acesso" onclick="toggleDropdownAparencia(event, 'acesso')" title="Personalizar Cores e Tema" style="display:inline-flex;align-items:center;gap:.38rem;padding:.32rem .75rem;border-radius:10px;border:1px solid var(--linha);background:var(--bg2);color:var(--texto-s);font-family:'DM Sans',sans-serif;font-size:.72rem;font-weight:600;cursor:pointer;transition:all .2s;">
-        <span class="aparencia-dot" style="width: 12px; height: 12px; border-radius: 50%; background: rgb(58, 93, 100); display: inline-block;"></span>
+        <span class="aparencia-dot" style="width:12px;height:12px;border-radius:50%;background:var(--accent);display:inline-block"></span>
         <span>Aparência</span>
         <span style="font-size:.6rem;opacity:.7">▾</span>
       </button>
@@ -546,13 +549,13 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--texto);mi
       <div class="aparencia-dropdown" id="aparencia-dropdown-acesso" onclick="event.stopPropagation()" style="display:none;position:absolute;bottom:calc(100% + 6px);left:50%;transform:translateX(-50%);width:220px;background:var(--surface);border:1px solid var(--linha);border-radius:14px;padding:.85rem;box-shadow:0 10px 32px rgba(0,0,0,0.25);z-index:250;">
         <div style="font-size:.68rem;font-weight:700;color:var(--texto-s);text-transform:uppercase;letter-spacing:.05em;margin-bottom:.5rem;text-align:left;">Modo Visual</div>
         <div style="display:flex;gap:.4rem;margin-bottom:.85rem;">
-          <button class="btn-modo ativo" id="ac-claro" onclick="setModo('claro')" style="flex:1;padding:.4rem;border-radius:8px;border:1px solid var(--linha);background:var(--bg2);color:var(--texto);font-size:.75rem;cursor:pointer">☀️ Claro</button>
-          <button class="btn-modo" id="ac-escuro" onclick="setModo('escuro')" style="flex:1;padding:.4rem;border-radius:8px;border:1px solid var(--linha);background:var(--bg2);color:var(--texto);font-size:.75rem;cursor:pointer">� Escuro</button>
+          <button class="btn-modo ativo" id="ac-claro" onclick="setModo('claro')" style="flex:1;padding:.4rem;border-radius:8px;border:1px solid var(--linha);background:var(--bg2);color:var(--texto);font-size:.75rem;cursor:pointer">&#9728;️ Claro</button>
+          <button class="btn-modo" id="ac-escuro" onclick="setModo('escuro')" style="flex:1;padding:.4rem;border-radius:8px;border:1px solid var(--linha);background:var(--bg2);color:var(--texto);font-size:.75rem;cursor:pointer">&#127769; Escuro</button>
         </div>
 
         <div style="font-size:.68rem;font-weight:700;color:var(--texto-s);text-transform:uppercase;letter-spacing:.05em;margin-bottom:.5rem;text-align:left;">Paleta de Cores</div>
         <div style="display:grid;grid-template-columns:1fr 1fr;gap:.4rem;">
-          <button class="btn-ta-item" data-t="chumbo" onclick="setTema('chumbo')" style="display:flex;align-items:center;gap:.4rem;padding:.4rem .5rem;border-radius:8px;border:1px solid var(--linha);background:var(--bg2);color:var(--texto);font-size:.7rem;cursor:pointer;">
+          <button class="btn-ta-item ativo" data-t="chumbo" onclick="setTema('chumbo')" style="display:flex;align-items:center;gap:.4rem;padding:.4rem .5rem;border-radius:8px;border:1px solid var(--linha);background:var(--bg2);color:var(--texto);font-size:.7rem;cursor:pointer;">
             <span style="width:12px;height:12px;border-radius:50%;background:linear-gradient(135deg,#343B3B,#E1E8E8);display:inline-block"></span> Chumbo
           </button>
           <button class="btn-ta-item" data-t="terracota" onclick="setTema('terracota')" style="display:flex;align-items:center;gap:.4rem;padding:.4rem .5rem;border-radius:8px;border:1px solid var(--linha);background:var(--bg2);color:var(--texto);font-size:.7rem;cursor:pointer;">
@@ -571,17 +574,19 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--texto);mi
 </div>
 
 <!-- ══ TOPO ══ -->
-<div class="topo" id="topo-principal" style="display: flex;">
+<div class="topo" id="topo-principal" style="display:none">
   <div class="topo-esq">
-    <div class="topo-logo" style="display:flex;align-items:center"><span class="logo-texto-render" style="font-family:'Outfit',serif;font-size:20px;font-weight:700;color:var(--accent);letter-spacing:.03em;transition:all .3s ease">EHO - Organização, leveza e praticidade</span></div>
+    <div class="topo-logo" style="display:flex;align-items:center">
+      <div class="logo-tinted logo-img-topo" style="width:130px;height:38px;-webkit-mask-image:url('https://d1yei2z3i6k35z.cloudfront.net/3119789/69f59543269857.76143509_BetaLogoSEQLIST2.png');mask-image:url('https://d1yei2z3i6k35z.cloudfront.net/3119789/69f59543269857.76143509_BetaLogoSEQLIST2.png');"></div>
+    </div>
     <div class="topo-div"></div>
-    <div class="topo-cliente" id="topo-label"><span class="bc-link" onclick="navegar('admin')" style="cursor:pointer;font-weight:600;color:var(--texto);transition:color .15s" onmouseover="this.style.color='var(--accent)'" onmouseout="this.style.color='var(--texto)'">Admin</span><span style="color:var(--texto-s);opacity:.5;margin:0 .2rem">›</span><strong>Andrea Aleo</strong><button onclick="navegar('admin')" style="margin-left:.5rem;padding:.1rem .5rem;border-radius:6px;border:1px solid var(--linha);background:var(--bg2);color:var(--texto-s);font-size:.62rem;cursor:pointer;font-family:'DM Sans',sans-serif">← Admin</button></div>
+    <div class="topo-cliente" id="topo-label"></div>
   </div>
   <div class="topo-dir">
     <!-- DROPDOWN APARÊNCIA E TEMA DO TOPO -->
     <div style="position:relative">
       <button class="btn-aparencia" id="btn-aparencia-topo" onclick="toggleDropdownAparencia(event, 'topo')" title="Personalizar Cores e Tema" style="display:inline-flex;align-items:center;gap:.38rem;padding:.32rem .65rem;border-radius:10px;border:1px solid var(--linha);background:var(--bg2);color:var(--texto-s);font-family:'DM Sans',sans-serif;font-size:.72rem;font-weight:600;cursor:pointer;transition:all .2s;">
-        <span class="aparencia-dot" style="width: 12px; height: 12px; border-radius: 50%; background: rgb(58, 93, 100); display: inline-block;"></span>
+        <span class="aparencia-dot" style="width:12px;height:12px;border-radius:50%;background:var(--accent);display:inline-block"></span>
         <span>Aparência</span>
         <span style="font-size:.6rem;opacity:.7">▾</span>
       </button>
@@ -589,13 +594,13 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--texto);mi
       <div class="aparencia-dropdown" id="aparencia-dropdown-topo" onclick="event.stopPropagation()" style="display:none;position:absolute;top:calc(100% + 6px);right:0;width:220px;background:var(--surface);border:1px solid var(--linha);border-radius:14px;padding:.85rem;box-shadow:0 10px 32px rgba(0,0,0,0.25);z-index:250;">
         <div style="font-size:.68rem;font-weight:700;color:var(--texto-s);text-transform:uppercase;letter-spacing:.05em;margin-bottom:.5rem;">Modo Visual</div>
         <div style="display:flex;gap:.4rem;margin-bottom:.85rem;">
-          <button class="btn-modo ativo" id="btn-claro" onclick="setModo('claro')" style="flex:1;padding:.4rem;border-radius:8px;border:1px solid var(--linha);background:var(--bg2);color:var(--texto);font-size:.75rem;cursor:pointer">☀️ Claro</button>
-          <button class="btn-modo" id="btn-escuro" onclick="setModo('escuro')" style="flex:1;padding:.4rem;border-radius:8px;border:1px solid var(--linha);background:var(--bg2);color:var(--texto);font-size:.75rem;cursor:pointer">� Escuro</button>
+          <button class="btn-modo ativo" id="btn-claro" onclick="setModo('claro')" style="flex:1;padding:.4rem;border-radius:8px;border:1px solid var(--linha);background:var(--bg2);color:var(--texto);font-size:.75rem;cursor:pointer">&#9728;️ Claro</button>
+          <button class="btn-modo" id="btn-escuro" onclick="setModo('escuro')" style="flex:1;padding:.4rem;border-radius:8px;border:1px solid var(--linha);background:var(--bg2);color:var(--texto);font-size:.75rem;cursor:pointer">&#127769; Escuro</button>
         </div>
 
         <div style="font-size:.68rem;font-weight:700;color:var(--texto-s);text-transform:uppercase;letter-spacing:.05em;margin-bottom:.5rem;">Paleta de Cores</div>
         <div style="display:grid;grid-template-columns:1fr 1fr;gap:.4rem;">
-          <button class="btn-ta-item" data-t="chumbo" onclick="setTema('chumbo')" style="display:flex;align-items:center;gap:.4rem;padding:.4rem .5rem;border-radius:8px;border:1px solid var(--linha);background:var(--bg2);color:var(--texto);font-size:.7rem;cursor:pointer;">
+          <button class="btn-ta-item ativo" data-t="chumbo" onclick="setTema('chumbo')" style="display:flex;align-items:center;gap:.4rem;padding:.4rem .5rem;border-radius:8px;border:1px solid var(--linha);background:var(--bg2);color:var(--texto);font-size:.7rem;cursor:pointer;">
             <span style="width:12px;height:12px;border-radius:50%;background:linear-gradient(135deg,#343B3B,#E1E8E8);display:inline-block"></span> Chumbo
           </button>
           <button class="btn-ta-item" data-t="terracota" onclick="setTema('terracota')" style="display:flex;align-items:center;gap:.4rem;padding:.4rem .5rem;border-radius:8px;border:1px solid var(--linha);background:var(--bg2);color:var(--texto);font-size:.7rem;cursor:pointer;">
@@ -612,13 +617,13 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--texto);mi
     </div>
     <!-- BOTÃO TUTORIAL / GUIA INTERATIVO -->
     <button class="btn-aparencia" onclick="abrirModalTutorial()" title="Guia e Tutorial Interativo" style="display:inline-flex;align-items:center;gap:.35rem;padding:.32rem .65rem;border-radius:10px;border:1px solid var(--linha);background:var(--bg2);color:var(--texto-s);font-family:'DM Sans',sans-serif;font-size:.72rem;font-weight:600;cursor:pointer;transition:all .2s;">
-      <span>❓ Guia</span>
+      <span>&#10067; Guia</span>
     </button>
     <div class="divv"></div>
     <!-- chave API -->
     <div style="position:relative">
-      <button class="btn-groq ok" id="btn-groq" onclick="toggleGroq(event)" title="Configurar IA">�</button>
-      <div class="groq-dropdown" id="groq-dropdown" onclick="event.stopPropagation()" style="display: none;">
+      <button class="btn-groq" id="btn-groq" onclick="toggleGroq(event)" title="Configurar IA">&#128273;</button>
+      <div class="groq-dropdown" id="groq-dropdown" onclick="event.stopPropagation()">
         <div class="api-keys-titulo">Configuração de IA</div>
 
         <!-- OpenRouter (principal) -->
@@ -628,22 +633,22 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--texto);mi
             <a href="https://openrouter.ai/keys" target="_blank" class="api-criar-link">↗ Criar chave</a>
           </div>
           <input type="password" id="openrouter-key" placeholder="sk-or-..." oninput="salvarOpenRouterKey()">
-          <span class="groq-st ok" id="openrouter-status">✓ Salva</span>
+          <span class="groq-st" id="openrouter-status">—</span>
         </div>
 
         <!-- Seletor de modelo -->
         <div class="api-key-bloco" style="margin-top:.65rem;">
           <label style="margin:0 0 .3rem;font-weight:600;display:block">Modelo</label>
           <select id="modelo-select" onchange="salvarModelo()" style="width:100%;padding:.35rem .6rem;border-radius:8px;border:1px solid var(--linha);background:var(--bg2);color:var(--texto);font-family:'DM Sans',sans-serif;font-size:.75rem;">
-            <optgroup label="� Gratuitos">
-              <option value="openrouter/free">� Auto — melhor gratuito disponível</option>
+            <optgroup label="&#127379; Gratuitos">
+              <option value="openrouter/free">&#128256; Auto — melhor gratuito disponível</option>
               <option value="deepseek/deepseek-r1:free">DeepSeek R1</option>
               <option value="deepseek/deepseek-chat-v3-0324:free">DeepSeek V3</option>
               <option value="meta-llama/llama-3.3-70b-instruct:free">Llama 3.3 70B (Meta)</option>
               <option value="qwen/qwen3-235b-a22b:free">Qwen3 235B</option>
               <option value="mistralai/mistral-small-3.1-24b-instruct:free">Mistral Small 3.1</option>
             </optgroup>
-            <optgroup label="� Pagos">
+            <optgroup label="&#128179; Pagos">
               <option value="deepseek/deepseek-chat">DeepSeek V3 (pago)</option>
               <option value="deepseek/deepseek-r1">DeepSeek R1 (pago)</option>
               <option value="xiaomi/mimo-v2-flash">MiMo-V2-Flash</option>
@@ -652,7 +657,7 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--texto);mi
               <option value="openai/gpt-4o-mini">GPT-4o Mini</option>
             </optgroup>
           </select>
-          <span style="font-size:.6rem;color:var(--accent3);margin-top:.25rem;display:block">� Gratuitos não precisam de créditos · Auto escolhe o melhor disponível</span>
+          <span style="font-size:.6rem;color:var(--accent3);margin-top:.25rem;display:block">&#127379; Gratuitos não precisam de créditos · Auto escolhe o melhor disponível</span>
         </div>
 
         <!-- Groq direto (fallback legado) -->
@@ -671,9 +676,9 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--texto);mi
     <div class="divv"></div>
     <!-- CRACHÁ DE IDENTIFICAÇÃO DO USUÁRIO LOGADO -->
     <div class="topo-user-badge" id="topo-user-badge" style="display:flex;align-items:center;gap:.4rem;padding:.2rem .6rem;background:var(--bg2);border:1px solid var(--linha);border-radius:12px;font-size:.72rem">
-      <span class="ub-av" id="ub-av" style="width:20px;height:20px;border-radius:50%;background:var(--accent);color:#fff;display:inline-flex;align-items:center;justify-content:center;font-size:.65rem;font-weight:700">A</span>
-      <span class="ub-nome" id="ub-nome" style="font-weight:600;color:var(--texto)">Admin Master</span>
-      <span class="ub-role" id="ub-role" style="font-size: 0.6rem; padding: 1px 5px; border-radius: 4px; background: var(--surface); color: var(--accent3);">Master</span>
+      <span class="ub-av" id="ub-av" style="width:20px;height:20px;border-radius:50%;background:var(--accent);color:#fff;display:inline-flex;align-items:center;justify-content:center;font-size:.65rem;font-weight:700">?</span>
+      <span class="ub-nome" id="ub-nome" style="font-weight:600;color:var(--texto)">Usuário</span>
+      <span class="ub-role" id="ub-role" style="font-size:.6rem;padding:1px 5px;border-radius:4px;background:var(--surface);color:var(--texto-s)">—</span>
     </div>
     <div class="divv"></div>
     <button class="btn-sair" onclick="sair()">Sair</button>
@@ -681,188 +686,119 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--texto);mi
 </div>
 
 <!-- ══ ADMIN ══ -->
-<div id="tela-admin" style="display: none;">
+<div id="tela-admin">
   <div class="admin-wrap">
     <!-- BARRA DE FILTRO DE VISIBILIDADE / FOCO DO ADMIN MASTER -->
     <div class="admin-filtro-wrap" style="margin-bottom:1.5rem">
       <div style="font-size:.7rem;font-weight:700;color:var(--texto-s);text-transform:uppercase;letter-spacing:.05em;margin-bottom:.4rem">Visualizar no Painel:</div>
       <div class="admin-filtro-chips" style="display:flex;gap:.4rem;flex-wrap:wrap">
-        <button class="btn-filtro-chip ativo" data-f="todos" onclick="filtrarVisibilidadeAdmin('todos')">�️ Exibir Todos</button>
-        <button class="btn-filtro-chip" id="chip-gestores" data-f="gestores" onclick="filtrarVisibilidadeAdmin('gestores')" style="display: inline-block;">� Gestores</button>
-        <button class="btn-filtro-chip" data-f="clientes" onclick="filtrarVisibilidadeAdmin('clientes')">� Clientes</button>
-        <button class="btn-filtro-chip" data-f="projetos" onclick="filtrarVisibilidadeAdmin('projetos')">� Projetos</button>
-        <button class="btn-filtro-chip" data-f="bib" onclick="filtrarVisibilidadeAdmin('bib')">� Biblioteca</button>
-        <button class="btn-filtro-chip" id="btn-doc-master-chip" onclick="abrirModalDocMaster()" style="background: var(--bg2); color: var(--accent); border-color: var(--accent); font-weight: 700; display: inline-block;">� Manual Master FNW</button>
-        <button class="btn-filtro-chip" id="btn-wl-filter-chip" onclick="abrirModalWhiteLabel()" style="background: var(--bg2); color: var(--accent); border-color: var(--accent); font-weight: 700; display: inline-block;">� White-Label</button>
+        <button class="btn-filtro-chip ativo" data-f="todos" onclick="filtrarVisibilidadeAdmin('todos')">&#128065;️ Exibir Todos</button>
+        <button class="btn-filtro-chip" id="chip-gestores" data-f="gestores" onclick="filtrarVisibilidadeAdmin('gestores')">&#128100; Gestores</button>
+        <button class="btn-filtro-chip" data-f="clientes" onclick="filtrarVisibilidadeAdmin('clientes')">&#127970; Clientes</button>
+        <button class="btn-filtro-chip" data-f="projetos" onclick="filtrarVisibilidadeAdmin('projetos')">&#128193; Projetos</button>
+        <button class="btn-filtro-chip" data-f="bib" onclick="filtrarVisibilidadeAdmin('bib')">&#128203; Biblioteca</button>
+        <button class="btn-filtro-chip" id="btn-doc-master-chip" onclick="abrirModalDocMaster()" style="background:var(--bg2);color:var(--accent);border-color:var(--accent);font-weight:700;display:none">&#128216; Manual Master FNW</button>
+        <button class="btn-filtro-chip" id="btn-wl-filter-chip" onclick="abrirModalWhiteLabel()" style="background:var(--bg2);color:var(--accent);border-color:var(--accent);font-weight:700;display:none">&#127912; White-Label</button>
       </div>
     </div>
 
     <!-- Nota informativa -->
-    <div class="admin-nota" style="display: flex;">
-      <div class="admin-nota-icone">�</div>
+    <div class="admin-nota">
+      <div class="admin-nota-icone">&#128161;</div>
       <div class="admin-nota-texto">
         <strong>Este HTML é sua versão master.</strong> Sempre que fizer alterações, exporte um novo HTML (⬇ HTML) e redistribua para os clientes.
         <br>
-        <button type="button" onclick="abrirModalDocMaster()" style="margin-top:.45rem;padding:.2rem .65rem;border-radius:6px;border:none;background:var(--accent);color:#fff;font-size:.7rem;font-weight:600;cursor:pointer">� Abrir Manual Técnico &amp; Arquitetura Master</button>
-        <button type="button" onclick="abrirModalWhiteLabel()" style="margin-top:.45rem;margin-left:.4rem;padding:.2rem .65rem;border-radius:6px;border:1px solid var(--accent);background:var(--bg2);color:var(--accent);font-size:.7rem;font-weight:700;cursor:pointer">� Personalizar Marca &amp; Cores (White-Label)</button>
+        <button type="button" onclick="abrirModalDocMaster()" style="margin-top:.45rem;padding:.2rem .65rem;border-radius:6px;border:none;background:var(--accent);color:#fff;font-size:.7rem;font-weight:600;cursor:pointer">&#128216; Abrir Manual Técnico & Arquitetura Master</button>
+        <button type="button" onclick="abrirModalWhiteLabel()" style="margin-top:.45rem;margin-left:.4rem;padding:.2rem .65rem;border-radius:6px;border:1px solid var(--accent);background:var(--bg2);color:var(--accent);font-size:.7rem;font-weight:700;cursor:pointer">&#127912; Personalizar Marca & Cores (White-Label)</button>
       </div>
-      <button class="admin-nota-fechar" onclick="this.parentElement.style.display='none'">✕</button>
+      <button class="admin-nota-fechar" onclick="this.parentElement.style.display='none'">&#10005;</button>
     </div>
 
     <!-- 1. SEÇÃO GESTORES / ADMINISTRADORES -->
-    <div id="admin-secao-gestores" style="margin-bottom: 2.5rem; display: block;">
+    <div id="admin-secao-gestores" style="margin-bottom:2.5rem">
       <div class="admin-bib-header">
         <div class="admin-bib-titulo">Gestores / Administradores</div>
         <button class="btn-add-bib" onclick="abrirModalAdmin()">+ Novo Admin</button>
       </div>
-      <div class="clientes-grid" id="admins-grid" style="margin-top:.8rem"><div class="cliente-card" style="cursor:default">
-          <div class="cliente-av" style="background:var(--accent2)">A</div>
-          <div class="cliente-nome">Admin Master</div>
-          <div class="cliente-info">
-            <span style="font-family:monospace;font-size:.68rem;background:var(--bg2);padding:1px 5px;border-radius:4px">fnw2025</span>
-             · <span style="font-size:.65rem;color:var(--accent3)">master</span>
-          </div>
-          <div class="cliente-acoes">
-            <button class="btn-ca" title="Editar" onclick="editarAdmin('adm-master')">✏️</button>
-            
-          </div>
-        </div><div class="cliente-card" style="cursor:default">
-          <div class="cliente-av" style="background:var(--accent2)">G</div>
-          <div class="cliente-nome">Gestor Demo (FNW)</div>
-          <div class="cliente-info">
-            <span style="font-family:monospace;font-size:.68rem;background:var(--bg2);padding:1px 5px;border-radius:4px">demo2025</span>
-            
-          </div>
-          <div class="cliente-acoes">
-            <button class="btn-ca" title="Editar" onclick="editarAdmin('adm-demo')">✏️</button>
-            <button class="btn-ca del" title="Excluir" onclick="excluirAdmin('adm-demo')">✕</button>
-          </div>
-        </div></div>
+      <div class="clientes-grid" id="admins-grid" style="margin-top:.8rem"></div>
     </div>
 
     <!-- 2. SEÇÃO CLIENTES -->
-    <div id="admin-secao-clientes" style="margin-bottom: 2.5rem; display: block;">
+    <div id="admin-secao-clientes" style="margin-bottom:2.5rem">
       <div class="admin-header">
-        <div class="admin-titulo" id="admin-clientes-titulo">Clientes <span><div class="logo-tinted" style="width:60px;height:20px;display:inline-block;vertical-align:middle;-webkit-mask-image:url('https://d1yei2z3i6k35z.cloudfront.net/3119789/69f59543269857.76143509_BetaLogoSEQLIST2.png');mask-image:url('https://d1yei2z3i6k35z.cloudfront.net/3119789/69f59543269857.76143509_BetaLogoSEQLIST2.png');"></div></span></div>
+        <div class="admin-titulo" id="admin-clientes-titulo">Clientes <span><img src="https://d1yei2z3i6k35z.cloudfront.net/3119789/69f59543269857.76143509_BetaLogoSEQLIST2.png" alt="FNW" style="height:22px;object-fit:contain;vertical-align:middle;"></span></div>
         <button class="btn-add-c" onclick="abrirModalCliente()">+ Novo cliente</button>
       </div>
-      <div class="clientes-grid" id="clientes-grid" style="margin-top:.8rem"><div class="cliente-card" onclick="entrarComoCliente('cli-demo')">
-          <div class="cliente-av">C</div>
-          <div class="cliente-nome">Cliente Demo (Empresa Teste)</div>
-          <div class="cliente-info">0 projetos (0 atividades)
-             · <span style="font-family:monospace;font-size:.68rem;background:var(--bg2);padding:1px 5px;border-radius:4px">CLI-DEMO-99</span>
-            
-          </div>
-          <div class="cliente-acoes">
-            <button class="btn-ca" title="Exportar Chave de Acesso (.json para envio)" onclick="event.stopPropagation();exportarChaveCliente('cli-demo')">�</button>
-            <button class="btn-ca" title="Editar" onclick="event.stopPropagation();editarCliente('cli-demo')">✏️</button>
-            <button class="btn-ca del" title="Excluir" onclick="event.stopPropagation();excluirCliente('cli-demo')">✕</button>
-          </div>
-        </div><div class="cliente-card" onclick="entrarComoCliente('c1786186876160')">
-          <div class="cliente-av">A</div>
-          <div class="cliente-nome">Andrea Aleo</div>
-          <div class="cliente-info">1 projeto (1 atividade)
-             · <span style="font-family:monospace;font-size:.68rem;background:var(--bg2);padding:1px 5px;border-radius:4px">amba2705</span>
-            
-          </div>
-          <div class="cliente-acoes">
-            <button class="btn-ca" title="Exportar Chave de Acesso (.json para envio)" onclick="event.stopPropagation();exportarChaveCliente('c1786186876160')">�</button>
-            <button class="btn-ca" title="Editar" onclick="event.stopPropagation();editarCliente('c1786186876160')">✏️</button>
-            <button class="btn-ca del" title="Excluir" onclick="event.stopPropagation();excluirCliente('c1786186876160')">✕</button>
-          </div>
-        </div></div>
+      <div class="clientes-grid" id="clientes-grid" style="margin-top:.8rem"></div>
     </div>
 
     <!-- 3. SEÇÃO PROJETOS -->
-    <div id="admin-secao-projetos" style="margin-bottom: 2.5rem; display: block;">
+    <div id="admin-secao-projetos" style="margin-bottom:2.5rem">
       <div class="admin-bib-header">
         <div class="admin-bib-titulo">Projetos</div>
       </div>
-      <div class="clientes-grid" id="admin-projetos-grid" style="margin-top:.8rem"><div class="cliente-card" onclick="entrarComoClienteProjeto('c1786186876160', 'proj-1786187778822')">
-            <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:.4rem">
-              <span style="font-size:1.4rem">�</span>
-              <span class="pc-badge" style="font-size:.68rem">1 processo</span>
-            </div>
-            <div class="cliente-nome">Cozinha Alex</div>
-            <div class="cliente-info" style="margin-top:.2rem">
-              <span style="font-size:.68rem;color:var(--accent);font-weight:600">� Andrea Aleo</span>
-            </div>
-            <div class="pc-desc" style="font-size:.72rem;color:var(--texto-s);margin-top:.3rem">elementos e itens da cozinha</div>
-            <div class="cliente-acoes">
-              <button class="btn-ca" title="Atribuir / Copiar" onclick="event.stopPropagation();abrirModalAtribuirProjeto('proj-1786187778822')">�</button>
-            </div>
-          </div></div>
+      <div class="clientes-grid" id="admin-projetos-grid" style="margin-top:.8rem"></div>
     </div>
 
     <!-- 4. SEÇÃO BIBLIOTECA DE PROCESSOS FNW -->
-    <div id="admin-secao-bib" style="display: block;">
+    <div id="admin-secao-bib">
       <div class="admin-bib-header">
         <div class="admin-bib-titulo">Biblioteca de processos</div>
         <button class="btn-add-bib" onclick="irParaNovaBib()">+ Novo processo</button>
       </div>
-      <div id="bib-lista" style="margin-top:.8rem"><div class="bib-vazio">Nenhum processo na biblioteca ainda.</div></div>
+      <div id="bib-lista" style="margin-top:.8rem"></div>
     </div>
   </div>
 </div>
 
 <!-- ══ HUB CLIENTE ══ -->
-<div id="tela-hub" style="display: block;">
+<div id="tela-hub">
   <div class="hub-wrap">
     <div class="hub-header">
       <div>
-        <div class="hub-saudacao" id="hub-saudacao">Olá, <span>Andrea Aleo</span> �</div>
-        <div class="hub-sub">Selecione um projeto para ver suas atividades.</div>
+        <div class="hub-saudacao" id="hub-saudacao"></div>
+        <div class="hub-sub">Escolha um processo para começar.</div>
       </div>
-      <button class="btn-nova" onclick="irParaNova()" style="display: inline-flex;">+ Novo projeto</button>
+      <button class="btn-nova" onclick="irParaNova()" style="${nivelAcesso==='leitura'&&!modoAdminGerenciaCliente?'display:none':''}">+ Nova atividade</button>
     </div>
-    <div class="processos-grid" id="processos-grid"><div class="processo-card" onclick="navegar('hub-projeto', { projetoId: 'proj-1786187778822' })">
-        <div class="pc-icon">�</div>
-        <div class="pc-nome">Cozinha Alex</div>
-        <div class="pc-desc">elementos e itens da cozinha</div>
-        <div class="pc-meta"><span class="pc-badge">1 processo</span></div>
-        <div class="pc-acoes">
-          <button class="btn-pca" title="Atribuir / Copiar Projeto" onclick="event.stopPropagation();abrirModalAtribuirProjeto('proj-1786187778822')">�</button>
-          <button class="btn-pca" title="Editar" onclick="event.stopPropagation();editarProjeto('proj-1786187778822')">✏️</button>
-          <button class="btn-pca del" title="Excluir" onclick="event.stopPropagation();excluirProjeto('proj-1786187778822')">✕</button>
-        </div>
-      </div></div>
-    <div class="hub-vazio" id="hub-vazio" style="display: none;">
-      <div class="hub-vazio-icon">�</div>
-      <p>Nenhum projeto ainda.<br>Clique em <strong>+ Novo projeto</strong> para começar.</p>
+    <div class="processos-grid" id="processos-grid"></div>
+    <div class="hub-vazio" id="hub-vazio" style="display:none">
+      <div class="hub-vazio-icon">&#128203;</div>
+      <p>Nenhum processo ainda.<br>Clique em <strong>+ Nova atividade</strong> para começar.</p>
     </div>
 
     <!-- Biblioteca pessoal do cliente -->
     <div class="cliente-bib-secao">
       <div class="admin-bib-header" style="margin-top:2rem">
-        <div class="admin-bib-titulo">� Minha biblioteca</div>
+        <div class="admin-bib-titulo">&#128218; Minha biblioteca</div>
         <button class="btn-add-bib" onclick="irParaNovaBibCliente()">+ Salvar processo</button>
       </div>
-      <div id="cliente-bib-lista"><div class="bib-vazio">Nenhum processo salvo ainda. Use "� Minha bib" nos cards acima.</div></div>
+      <div id="cliente-bib-lista"></div>
     </div>
   </div>
 </div>
 
 <!-- ══ TELA NOVA ══ -->
-<div id="tela-nova" style="display: none;">
+<div id="tela-nova">
   <div class="nova-wrap">
     <div class="nova-header">
       <button class="btn-voltar" onclick="irParaHub()">←</button>
       <div class="nova-titulo">Nova atividade</div>
     </div>
     <div class="modo-tabs">
-      <button class="modo-tab ativo" id="tab-ia" onclick="setModoNova('ia')">✨ Descrever</button>
-      <button class="modo-tab" id="tab-texto" onclick="setModoNova('texto')">� Colar texto</button>
-      <button class="modo-tab" id="tab-form" onclick="setModoNova('form')">� Manual</button>
-      <button class="modo-tab" id="tab-json" onclick="setModoNova('json')">� JSON</button>
+      <button class="modo-tab ativo" id="tab-ia" onclick="setModoNova('ia')">&#10024; Descrever</button>
+      <button class="modo-tab" id="tab-texto" onclick="setModoNova('texto')">&#128203; Colar texto</button>
+      <button class="modo-tab" id="tab-form" onclick="setModoNova('form')">&#128221; Manual</button>
+      <button class="modo-tab" id="tab-json" onclick="setModoNova('json')">&#128194; JSON</button>
     </div>
     <div id="modo-ia">
       <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:.3rem">
         <p class="ia-label" style="margin:0">Descreva o processo em linguagem natural. A IA monta as fichas automaticamente.</p>
         <div style="display:flex;align-items:center;gap:.4rem">
           <button type="button" id="btn-mic-ia" onclick="alternarDitadoVoz('ia-desc', 'btn-mic-ia')" style="padding:.2rem .55rem;border-radius:6px;border:1px solid var(--linha);background:var(--bg2);color:var(--texto-s);font-size:.72rem;cursor:pointer;display:inline-flex;align-items:center;gap:.3rem;transition:all .2s" title="Ditar por voz em português">
-            �️ <span class="mic-label">Ditar por voz</span>
+            &#127897;️ <span class="mic-label">Ditar por voz</span>
           </button>
-          <button class="btn-hist-prompt" onclick="toggleHistPrompts()" title="Histórico de prompts">�</button>
+          <button class="btn-hist-prompt" onclick="toggleHistPrompts()" title="Histórico de prompts">&#128344;</button>
         </div>
       </div>
       <!-- Dropdown histórico de prompts -->
@@ -890,7 +826,7 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--texto);mi
         </div>
         <span class="etapas-qtd-hint" id="ia-qtd-hint">Auto = a IA decide quantas precisar</span>
       </div>
-      <button class="btn-gerar" id="btn-gerar" onclick="gerarIA()">✨ Gerar processo</button>
+      <button class="btn-gerar" id="btn-gerar" onclick="gerarIA()">&#10024; Gerar processo</button>
       <div class="ia-status" id="ia-status"></div>
     </div>
 
@@ -899,7 +835,7 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--texto);mi
       <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:.3rem">
         <p class="ia-label" style="margin:0">Cole qualquer texto ou use o microfone. O sistema detecta o formato e monta as etapas.</p>
         <button type="button" id="btn-mic-texto" onclick="alternarDitadoVoz('texto-colado', 'btn-mic-texto')" style="padding:.2rem .55rem;border-radius:6px;border:1px solid var(--linha);background:var(--bg2);color:var(--texto-s);font-size:.72rem;cursor:pointer;display:inline-flex;align-items:center;gap:.3rem;transition:all .2s" title="Ditar por voz em português">
-          �️ <span class="mic-label">Ditar por voz</span>
+          &#127897;️ <span class="mic-label">Ditar por voz</span>
         </button>
       </div>
       <textarea class="ia-textarea" id="texto-colado" style="min-height:180px" placeholder="Cole aqui o texto do processo...
@@ -925,13 +861,13 @@ Pode ser:
         </div>
         <span class="etapas-qtd-hint">Auto = extrai todas do texto</span>
       </div>
-      <button class="btn-gerar" id="btn-texto" onclick="gerarDoTexto()">� Interpretar e montar fichas</button>
+      <button class="btn-gerar" id="btn-texto" onclick="gerarDoTexto()">&#128203; Interpretar e montar fichas</button>
       <div class="ia-status" id="texto-status"></div>
     </div>
     <div id="modo-form">
       <div class="form-section">
         <label class="form-label">Ícone</label>
-        <input class="form-input" id="f-icone" placeholder="�" style="width:68px">
+        <input class="form-input" id="f-icone" placeholder="&#128203;" style="width:68px">
       </div>
       <div class="form-section">
         <label class="form-label">Nome do processo</label>
@@ -941,7 +877,7 @@ Pode ser:
         <div style="display:flex;align-items:center;justify-content:space-between">
           <label class="form-label" style="margin:0">Descrição curta</label>
           <button type="button" id="btn-mic-fdesc" onclick="alternarDitadoVoz('f-desc', 'btn-mic-fdesc')" style="padding:.15rem .45rem;border-radius:5px;border:1px solid var(--linha);background:var(--bg2);color:var(--texto-s);font-size:.68rem;cursor:pointer;display:inline-flex;align-items:center;gap:.2rem" title="Ditar por voz">
-            �️ <span class="mic-label">Ditar</span>
+            &#127897;️ <span class="mic-label">Ditar</span>
           </button>
         </div>
         <input class="form-input" id="f-desc" placeholder="Ex: Produção semanal de posts" style="margin-top:.3rem">
@@ -954,8 +890,11 @@ Pode ser:
       <button class="btn-gerar" onclick="salvarForm()">Criar processo</button>
     </div>
     <div id="modo-json">
-      <div class="json-drop-area" id="json-drop-area" ondragover="event.preventDefault();this.classList.add('drag-over')" ondragleave="this.classList.remove('drag-over')" ondrop="onDropJSON(event)">
-        <div class="json-drop-icon">�</div>
+      <div class="json-drop-area" id="json-drop-area"
+        ondragover="event.preventDefault();this.classList.add('drag-over')"
+        ondragleave="this.classList.remove('drag-over')"
+        ondrop="onDropJSON(event)">
+        <div class="json-drop-icon">&#128194;</div>
         <div class="json-drop-texto">Arraste um arquivo JSON aqui</div>
         <div class="json-drop-sub">ou clique para selecionar</div>
         <label class="btn-gerar" style="display:inline-block;cursor:pointer;margin-top:.8rem;width:auto;padding:.5rem 1.4rem">
@@ -969,10 +908,10 @@ Pode ser:
             <div class="json-preview-nome" id="json-preview-nome"></div>
             <div class="json-preview-meta" id="json-preview-meta"></div>
           </div>
-          <button class="btn-descartar" onclick="limparJSONImport()">✕ Limpar</button>
+          <button class="btn-descartar" onclick="limparJSONImport()">&#10005; Limpar</button>
         </div>
         <div class="json-preview-etapas" id="json-preview-etapas"></div>
-        <button class="btn-gerar" style="margin-top:.8rem" onclick="salvarJSONImport()">✓ Adicionar este processo</button>
+        <button class="btn-gerar" style="margin-top:.8rem" onclick="salvarJSONImport()">&#10003; Adicionar este processo</button>
       </div>
       <div class="json-erro" id="json-erro" style="display:none"></div>
     </div>
@@ -980,19 +919,19 @@ Pode ser:
       <div class="preview-titulo" id="preview-nome"></div>
       <div id="preview-etapas"></div>
     </div>
-    <button class="btn-salvar-proc" id="btn-salvar-prev" onclick="salvarPreview()">✓ Salvar este processo</button>
+    <button class="btn-salvar-proc" id="btn-salvar-prev" onclick="salvarPreview()">&#10003; Salvar este processo</button>
   </div>
 </div>
 
 <!-- ══ PROCESSO ══ -->
-<div id="tela-processo" style="display: none;">
+<div id="tela-processo">
   <div class="proc-wrap">
     <!-- BLOCO STICKY ÚNICO — nome + ferramentas + timeline sempre visíveis -->
     <div class="proc-sticky" id="proc-sticky">
       <div class="proc-topo-row">
         <button class="btn-voltar" onclick="irParaHub()">←</button>
         <div class="proc-nome" id="proc-nome"></div>
-        <button class="btn-ia-proc" onclick="toggleIAProcesso()">✨ IA</button>
+        <button class="btn-ia-proc" onclick="toggleIAProcesso()">&#10024; IA</button>
       </div>
       <div class="proc-desc" id="proc-desc"></div>
       <div class="ferramentas" id="proc-ferr"></div>
@@ -1002,24 +941,24 @@ Pode ser:
     <!-- Painel IA — não sticky, aparece abaixo -->
     <div class="proc-ia-wrap" id="proc-ia-wrap">
       <div class="proc-ia-header">
-        <div class="proc-ia-titulo">✨ Melhorar processo com IA</div>
-        <button class="btn-fechar-ia" onclick="toggleIAProcesso()">✕</button>
+        <div class="proc-ia-titulo">&#10024; Melhorar processo com IA</div>
+        <button class="btn-fechar-ia" onclick="toggleIAProcesso()">&#10005;</button>
       </div>
       <div class="proc-ia-instrucao">
         <div style="display:flex;align-items:flex-start;gap:.4rem;width:100%">
           <textarea id="proc-ia-instrucao" placeholder="Ex: torna as instruções mais simples, adapta para iniciantes..."></textarea>
           <button type="button" id="btn-mic-proc-ia" onclick="alternarDitadoVoz('proc-ia-instrucao', 'btn-mic-proc-ia')" style="padding:.35rem .6rem;border-radius:6px;border:1px solid var(--linha);background:var(--bg2);color:var(--texto-s);font-size:.72rem;cursor:pointer;display:inline-flex;align-items:center;gap:.3rem;white-space:nowrap" title="Ditar por voz em português">
-            �️ <span class="mic-label">Ditar</span>
+            &#127897;️ <span class="mic-label">Ditar</span>
           </button>
         </div>
-        <button class="btn-ia-run" id="btn-ia-proc-run" onclick="analisarProcessoIA()">✨ Analisar</button>
+        <button class="btn-ia-run" id="btn-ia-proc-run" onclick="analisarProcessoIA()">&#10024; Analisar</button>
       </div>
       <div class="proc-ia-status" id="proc-ia-status" style="display:none"></div>
       <div class="proc-ia-sugestoes" id="proc-ia-sugestoes"></div>
     </div>
     <div id="proc-etapas"></div>
     <div class="celebracao" id="celebracao">
-      <h2>Processo concluído. ✓</h2>
+      <h2>Processo concluído. &#10003;</h2>
       <p>Você fez o caminho inteiro.<br>Na próxima vez fica mais fácil.</p>
     </div>
     <button class="reset-btn" onclick="resetProc()">Reiniciar processo</button>
@@ -1034,12 +973,12 @@ Pode ser:
     <input type="hidden" id="mc-id">
     <label class="modal-label">
       <span>Nome do cliente</span>
-      <button type="button" class="btn-ditado" onclick="alternarDitadoVoz('mc-nome', this)">�️ Ditar</button>
+      <button type="button" class="btn-ditado" onclick="alternarDitadoVoz('mc-nome', this)">&#127897;️ Ditar</button>
     </label>
     <input class="modal-input" id="mc-nome" placeholder="Nome do cliente">
     <label class="modal-label">
       <span>E-mail do cliente (opcional)</span>
-      <button type="button" class="btn-ditado" onclick="alternarDitadoVoz('mc-email', this)">�️ Ditar</button>
+      <button type="button" class="btn-ditado" onclick="alternarDitadoVoz('mc-email', this)">&#127897;️ Ditar</button>
     </label>
     <input class="modal-input" id="mc-email" type="email" placeholder="exemplo@empresa.com">
     <div style="display:grid;grid-template-columns:1fr 1fr;gap:.6rem">
@@ -1047,8 +986,8 @@ Pode ser:
         <div style="display:flex;align-items:center;justify-content:space-between">
           <label class="modal-label" style="margin:0">Código de acesso</label>
           <div style="display:flex;gap:.3rem">
-            <button type="button" class="btn-ditado" onclick="alternarDitadoVoz('mc-senha', this)">�️ Ditar</button>
-            <button type="button" onclick="gerarCodigoAutomatico()" style="padding:.1rem .35rem;border-radius:4px;border:1px solid var(--linha);background:var(--bg2);color:var(--texto-s);font-size:.62rem;cursor:pointer" title="Gerar novo código automático">� Gerar</button>
+            <button type="button" class="btn-ditado" onclick="alternarDitadoVoz('mc-senha', this)">&#127897;️ Ditar</button>
+            <button type="button" onclick="gerarCodigoAutomatico()" style="padding:.1rem .35rem;border-radius:4px;border:1px solid var(--linha);background:var(--bg2);color:var(--texto-s);font-size:.62rem;cursor:pointer" title="Gerar novo código automático">&#127922; Gerar</button>
           </div>
         </div>
         <input class="modal-input" id="mc-senha" placeholder="Ex: CLI-8F3" style="margin-bottom:0;margin-top:.2rem">
@@ -1078,12 +1017,12 @@ Pode ser:
     <input type="hidden" id="mp-id">
     <label class="modal-label">
       <span>Nome do projeto</span>
-      <button type="button" class="btn-ditado" onclick="alternarDitadoVoz('mp-nome', this)">�️ Ditar</button>
+      <button type="button" class="btn-ditado" onclick="alternarDitadoVoz('mp-nome', this)">&#127897;️ Ditar</button>
     </label>
     <input class="modal-input" id="mp-nome" placeholder="Ex: Reestruturação Operacional">
     <label class="modal-label" style="margin-top:.4rem">
       <span>Descrição</span>
-      <button type="button" class="btn-ditado" onclick="alternarDitadoVoz('mp-desc', this)">�️ Ditar</button>
+      <button type="button" class="btn-ditado" onclick="alternarDitadoVoz('mp-desc', this)">&#127897;️ Ditar</button>
     </label>
     <input class="modal-input" id="mp-desc" placeholder="Ex: Processos e checklists estratégicos do projeto" style="margin-top:.25rem">
     <div class="modal-acoes">
@@ -1100,12 +1039,12 @@ Pode ser:
     <input type="hidden" id="ma-id">
     <label class="modal-label">
       <span>Nome do gestor</span>
-      <button type="button" class="btn-ditado" onclick="alternarDitadoVoz('ma-nome', this)">�️ Ditar</button>
+      <button type="button" class="btn-ditado" onclick="alternarDitadoVoz('ma-nome', this)">&#127897;️ Ditar</button>
     </label>
     <input class="modal-input" id="ma-nome" placeholder="Ex: Carlos Silva">
     <label class="modal-label">
       <span>Senha de acesso</span>
-      <button type="button" class="btn-ditado" onclick="alternarDitadoVoz('ma-senha', this)">�️ Ditar</button>
+      <button type="button" class="btn-ditado" onclick="alternarDitadoVoz('ma-senha', this)">&#127897;️ Ditar</button>
     </label>
     <input class="modal-input" id="ma-senha" placeholder="Ex: carlos2025">
     <div class="modal-acoes">
@@ -1128,10 +1067,10 @@ Pode ser:
     <label class="modal-label" style="margin-top:.6rem">Ação</label>
     <div style="display:flex;gap:.8rem;margin-top:.3rem">
       <label style="display:flex;align-items:center;gap:.3rem;font-size:.8rem;color:var(--texto);cursor:pointer">
-        <input type="radio" name="matp-acao" value="copiar" checked=""> � Copiar (Criar duplicata no destino)
+        <input type="radio" name="matp-acao" value="copiar" checked> &#128203; Copiar (Criar duplicata no destino)
       </label>
       <label style="display:flex;align-items:center;gap:.3rem;font-size:.8rem;color:var(--texto);cursor:pointer">
-        <input type="radio" name="matp-acao" value="mover"> � Mover (Transferir proprietário)
+        <input type="radio" name="matp-acao" value="mover"> &#128666; Mover (Transferir proprietário)
       </label>
     </div>
     
@@ -1163,10 +1102,10 @@ Pode ser:
     <label class="modal-label" style="margin-top:.6rem">Ação</label>
     <div style="display:flex;gap:.8rem;margin-top:.3rem">
       <label style="display:flex;align-items:center;gap:.3rem;font-size:.8rem;color:var(--texto);cursor:pointer">
-        <input type="radio" name="matproc-acao" value="copiar" checked=""> � Copiar (Criar cópia no projeto)
+        <input type="radio" name="matproc-acao" value="copiar" checked> &#128203; Copiar (Criar cópia no projeto)
       </label>
       <label style="display:flex;align-items:center;gap:.3rem;font-size:.8rem;color:var(--texto);cursor:pointer">
-        <input type="radio" name="matproc-acao" value="mover"> � Mover (Transferir de projeto)
+        <input type="radio" name="matproc-acao" value="mover"> &#128666; Mover (Transferir de projeto)
       </label>
     </div>
     
@@ -1182,9 +1121,9 @@ Pode ser:
   <div class="modal-box" style="max-width:580px;width:95%">
     <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:1rem;padding-bottom:.5rem;border-bottom:1px solid var(--linha)">
       <div style="font-family:'DM Serif Display',serif;font-size:1.15rem;color:var(--accent);display:flex;align-items:center;gap:.4rem">
-        � Configuração White-Label &amp; Personalização Master
+        &#127912; Configuração White-Label & Personalização Master
       </div>
-      <button onclick="fecharModalWhiteLabel()" style="background:transparent;border:none;color:var(--texto-s);font-size:1.1rem;cursor:pointer">✕</button>
+      <button onclick="fecharModalWhiteLabel()" style="background:transparent;border:none;color:var(--texto-s);font-size:1.1rem;cursor:pointer">&#10005;</button>
     </div>
 
     <!-- TIPO DE LOGO: IMAGEM OU TEXTO -->
@@ -1192,10 +1131,10 @@ Pode ser:
       <label class="modal-label" style="font-weight:700">1. Tipo de Logotipo</label>
       <div style="display:flex;gap:1rem;margin-top:.3rem">
         <label style="display:flex;align-items:center;gap:.3rem;font-size:.8rem;color:var(--texto);cursor:pointer">
-          <input type="radio" name="wl-tipo-logo" value="imagem" id="wl-logo-img-radio" onchange="alternarTipoLogoWL('imagem')"> �️ Imagem (URL / PNG / SVG)
+          <input type="radio" name="wl-tipo-logo" value="imagem" id="wl-logo-img-radio" onchange="alternarTipoLogoWL('imagem')"> &#128444;️ Imagem (URL / PNG / SVG)
         </label>
         <label style="display:flex;align-items:center;gap:.3rem;font-size:.8rem;color:var(--texto);cursor:pointer">
-          <input type="radio" name="wl-tipo-logo" value="texto" id="wl-logo-txt-radio" onchange="alternarTipoLogoWL('texto')"> � Texto de Marca
+          <input type="radio" name="wl-tipo-logo" value="texto" id="wl-logo-txt-radio" onchange="alternarTipoLogoWL('texto')"> &#128292; Texto de Marca
         </label>
       </div>
     </div>
@@ -1260,24 +1199,24 @@ Pode ser:
   <div class="modal-box" style="max-width:660px;width:95%">
     <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:1rem;padding-bottom:.5rem;border-bottom:1px solid var(--linha)">
       <div style="font-family:'DM Serif Display',serif;font-size:1.15rem;color:var(--accent);display:flex;align-items:center;gap:.4rem">
-        � Manual Técnico &amp; Arquitetura Master (FNW)
+        &#128216; Manual Técnico & Arquitetura Master (FNW)
       </div>
-      <button onclick="fecharModalDocMaster()" style="background:transparent;border:none;color:var(--texto-s);font-size:1.1rem;cursor:pointer">✕</button>
+      <button onclick="fecharModalDocMaster()" style="background:transparent;border:none;color:var(--texto-s);font-size:1.1rem;cursor:pointer">&#10005;</button>
     </div>
 
     <!-- Abas de Navegação da Doc -->
     <div style="display:flex;gap:.3rem;margin-bottom:1rem;background:var(--bg2);padding:4px;border-radius:12px;border:1px solid var(--linha);overflow-x:auto">
-      <button type="button" class="acesso-tab ativo" id="tab-doc-arq" onclick="alternarAbaDocMaster('arq')">�️ Arquitetura</button>
-      <button type="button" class="acesso-tab" id="tab-doc-dados" onclick="alternarAbaDocMaster('dados')">� Ciclo de Dados</button>
-      <button type="button" class="acesso-tab" id="tab-doc-seg" onclick="alternarAbaDocMaster('seg')">� Segurança</button>
-      <button type="button" class="acesso-tab" id="tab-doc-wl" onclick="alternarAbaDocMaster('wl')">� White-Label</button>
-      <button type="button" class="acesso-tab" id="tab-doc-prompt" onclick="alternarAbaDocMaster('prompt')">� Prompt IA</button>
+      <button type="button" class="acesso-tab ativo" id="tab-doc-arq" onclick="alternarAbaDocMaster('arq')">&#127959;️ Arquitetura</button>
+      <button type="button" class="acesso-tab" id="tab-doc-dados" onclick="alternarAbaDocMaster('dados')">&#128260; Ciclo de Dados</button>
+      <button type="button" class="acesso-tab" id="tab-doc-seg" onclick="alternarAbaDocMaster('seg')">&#128273; Segurança</button>
+      <button type="button" class="acesso-tab" id="tab-doc-wl" onclick="alternarAbaDocMaster('wl')">&#127912; White-Label</button>
+      <button type="button" class="acesso-tab" id="tab-doc-prompt" onclick="alternarAbaDocMaster('prompt')">&#129302; Prompt IA</button>
     </div>
 
     <div id="conteudo-doc-master" style="max-height:380px;overflow-y:auto;font-size:.78rem;line-height:1.65;color:var(--texto-s);padding-right:.3rem">
       <!-- Aba 1: Arquitetura -->
       <div id="doc-sec-arq">
-        <h4 style="color:var(--texto);margin-bottom:.3rem;font-size:.88rem">1. Estrutura Single-File &amp; Cloud Sync</h4>
+        <h4 style="color:var(--texto);margin-bottom:.3rem;font-size:.88rem">1. Estrutura Single-File & Cloud Sync</h4>
         <p>O SEQLIST MÃE roda de forma autônoma em um único arquivo <code>index.html</code>. Todos os dados (clientes, gestores, projetos e biblioteca de processos) são mantidos em <code>localStorage</code> e sincronizados automaticamente via <code>POST</code> com a API Google Apps Script:</p>
         <div style="background:var(--bg2);padding:.6rem .8rem;border-radius:8px;font-family:monospace;font-size:.72rem;margin:.5rem 0;color:var(--texto);border:1px solid var(--linha)">
           API Endpoint: https://script.google.com/macros/s/.../exec<br>
@@ -1288,13 +1227,13 @@ Pode ser:
 
       <!-- Aba 2: Ciclo de Dados Export & Import -->
       <div id="doc-sec-dados" style="display:none">
-        <h4 style="color:var(--texto);margin-bottom:.3rem;font-size:.88rem">2. Guia de Exportação &amp; Importação (Master Admin)</h4>
+        <h4 style="color:var(--texto);margin-bottom:.3rem;font-size:.88rem">2. Guia de Exportação & Importação (Master Admin)</h4>
         <ul style="padding-left:1.1rem;margin:.4rem 0">
           <li><strong>⬇ HTML Export (Botão Roxo no Rodapé)</strong>: Gera uma versão standalone inteira do sistema com todos os dados atuais embutidos. Ideal para distribuir para clientes ou parceiros licenciados.</li>
-          <li><strong>⬇ JSON Export (Botão no Rodapé ou Card do Cliente �)</strong>:
+          <li><strong>⬇ JSON Export (Botão no Rodapé ou Card do Cliente &#128273;)</strong>:
             <ul style="padding-left:1rem;margin-top:.2rem">
               <li>No painel master: Exporta o backup de dados brutos de todo o sistema.</li>
-              <li>No card do cliente (botão �): Exporta o arquivo individual de acesso do cliente para envio via WhatsApp ou E-mail.</li>
+              <li>No card do cliente (botão &#128273;): Exporta o arquivo individual de acesso do cliente para envio via WhatsApp ou E-mail.</li>
             </ul>
           </li>
           <li><strong>⬆ JSON Import</strong>: Permite importar chaves digitais de clientes ou backups inteiros para atualizar a base local e sincronizar com a nuvem.</li>
@@ -1303,7 +1242,7 @@ Pode ser:
 
       <!-- Aba 3: Segurança -->
       <div id="doc-sec-seg" style="display:none">
-        <h4 style="color:var(--texto);margin-bottom:.3rem;font-size:.88rem">3. Trava de Rota &amp; Níveis de Acesso</h4>
+        <h4 style="color:var(--texto);margin-bottom:.3rem;font-size:.88rem">3. Trava de Rota & Níveis de Acesso</h4>
         <ul style="padding-left:1.1rem;margin:.4rem 0">
           <li><strong>Master Admin</strong> (senha <code>fnw2025</code>): Acesso irrestrito a todos os gestores, clientes, exportação HTML e chave master.</li>
           <li><strong>Gestor Secundário</strong> (ex: <code>demo2025</code>): Enxerga e gerencia exclusivamente os clientes cadastrados sob o seu <code>gestorId</code>.</li>
@@ -1314,14 +1253,14 @@ Pode ser:
 
       <!-- Aba 4: White-Label -->
       <div id="doc-sec-wl" style="display:none">
-        <h4 style="color:var(--texto);margin-bottom:.3rem;font-size:.88rem">4. Motor White-Label &amp; Personalização de Marca</h4>
+        <h4 style="color:var(--texto);margin-bottom:.3rem;font-size:.88rem">4. Motor White-Label & Personalização de Marca</h4>
         <p>Como Master Admin, você pode personalizar totalmente a experiência visual:</p>
         <ul style="padding-left:1.1rem;margin:.4rem 0">
           <li><strong>Logotipo em Imagem ou Texto</strong>: Escolha entre a URL da imagem (com máscara de cor automática <code>.logo-tinted</code>) ou Texto estilizado com Google Fonts (<em>Outfit, Inter, DM Serif, Playfair, Cinzel</em>, etc.).</li>
           <li><strong>Cor Hexadecimal Personalizada (#HEX)</strong>: Digite ou selecione qualquer cor hexadecimal. O sistema calcula a luminância WCAG automaticamente para garantir 100% de autocontraste e legibilidade em textos e botões!</li>
           <li><strong>Dicionário de Termos</strong>: Altere os nomes das entidades para atender diferentes nichos (ex: <em>Unidade, Campanha, Roteiro, SOP</em>).</li>
         </ul>
-        <button type="button" onclick="fecharModalDocMaster();abrirModalWhiteLabel()" style="margin-top:.6rem;padding:.3rem .8rem;border-radius:8px;border:none;background:var(--accent);color:#fff;font-weight:600;cursor:pointer">� Abrir Painel White-Label do Master Admin</button>
+        <button type="button" onclick="fecharModalDocMaster();abrirModalWhiteLabel()" style="margin-top:.6rem;padding:.3rem .8rem;border-radius:8px;border:none;background:var(--accent);color:#fff;font-weight:600;cursor:pointer">&#127912; Abrir Painel White-Label do Master Admin</button>
       </div>
 
       <!-- Aba 5: Prompt IA -->
@@ -1334,7 +1273,7 @@ Dada a base HTML do FNW SEQLIST MÃE, aplique as seguintes personalizações:
 2. LOGOTIPO (TEXTO OU IMAGEM): [Texto do Logo ou URL]
 3. FONTE DO LOGO (SE TEXTO): [Ex: Outfit / DM Serif Display / Inter / Roboto / Playfair Display / Cinzel]
 4. ESQUEMA DE CORES HEXADECIMAL: [Ex: #1E88E5 para a cor de destaque principal]
-5. DICIONÁRIO DE TERMOS: [Ex: Cliente -&gt; Unidade, Projeto -&gt; Campanha, Processo -&gt; Roteiro]
+5. DICIONÁRIO DE TERMOS: [Ex: Cliente -> Unidade, Projeto -> Campanha, Processo -> Roteiro]
 
 Instruções de Execução:
 - Atualize as variáveis CSS --accent e calcule o autocontraste WCAG.
@@ -1354,9 +1293,9 @@ Instruções de Execução:
   <div class="modal-box" style="max-width:540px;width:95%">
     <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:.8rem;padding-bottom:.5rem;border-bottom:1px solid var(--linha)">
       <div style="font-family:'DM Serif Display',serif;font-size:1.1rem;color:var(--accent);display:flex;align-items:center;gap:.4rem" id="tut-titulo-modal">
-        ❓ Guia Interativo SEQLIST
+        &#10067; Guia Interativo SEQLIST
       </div>
-      <button onclick="fecharModalTutorial()" style="background:transparent;border:none;color:var(--texto-s);font-size:1.1rem;cursor:pointer">✕</button>
+      <button onclick="fecharModalTutorial()" style="background:transparent;border:none;color:var(--texto-s);font-size:1.1rem;cursor:pointer">&#10005;</button>
     </div>
 
     <!-- Indicador de Passos -->
@@ -1380,23 +1319,23 @@ Instruções de Execução:
 
 <!-- SAVE BAR -->
 <datalist id="ferramentas-list">
-  <option value="Notion"></option><option value="Google Docs"></option><option value="Google Sheets">
-  </option><option value="Google Drive"></option><option value="Canva"></option><option value="Figma">
-  </option><option value="WhatsApp"></option><option value="Slack"></option><option value="Trello">
-  </option><option value="Asana"></option><option value="Gemini"></option><option value="DeepSeek">
-  </option><option value="Notebook LM"></option><option value="ChatGPT"></option><option value="Excel">
-  </option><option value="Word"></option><option value="PowerPoint"></option><option value="Airtable">
-  </option><option value="Zapier"></option><option value="Make"></option><option value="Monday">
-</option></datalist>
-<div class="save-bar" id="save-bar" style="display: flex;">
-  <span class="save-info" id="save-info">2 cliente(s) · 0 processo(s) na biblioteca</span>
-  <button class="btn-sv" id="btn-exportar-html" onclick="exportarHTML()" style="background: var(--accent3); display: inline-flex;" title="Exportar HTML com dados embutidos">⬇ HTML</button>
+  <option value="Notion"><option value="Google Docs"><option value="Google Sheets">
+  <option value="Google Drive"><option value="Canva"><option value="Figma">
+  <option value="WhatsApp"><option value="Slack"><option value="Trello">
+  <option value="Asana"><option value="Gemini"><option value="DeepSeek">
+  <option value="Notebook LM"><option value="ChatGPT"><option value="Excel">
+  <option value="Word"><option value="PowerPoint"><option value="Airtable">
+  <option value="Zapier"><option value="Make"><option value="Monday">
+</datalist>
+<div class="save-bar" id="save-bar" style="display:none">
+  <span class="save-info" id="save-info">—</span>
+  <button class="btn-sv" id="btn-exportar-html" onclick="exportarHTML()" style="background:var(--accent3);display:none" title="Exportar HTML com dados embutidos">⬇ HTML</button>
   <button class="btn-sv" onclick="exportar()">⬇ JSON</button>
   <label class="btn-ld" style="cursor:pointer">⬆ Importar<input type="file" accept=".json" style="display:none" onchange="importar(event)"></label>
 </div>
 
 <!-- SEQLIST_EMBEDDED_DATA -->
-<script id="seqlist-data" type="application/json">{"clientes":[{"id":"cli-demo","gestorId":"adm-demo","nome":"Cliente Demo (Empresa Teste)","senha":"CLI-DEMO-99","nivel":"total","projetos":[]},{"id":"c1786186876160","gestorId":"adm-master","nome":"Andrea Aleo","email":"andrea.fnw21@gmail.com","senha":"amba2705","nivel":"total","projetos":[{"id":"proj-1786187778822","nome":"Cozinha Alex","descricao":"elementos e itens da cozinha","processos":[{"icone":"�","nome":"Preparo da Pia para Cozinhar","descricao":"Organiza e higieniza a pia da cozinha antes de iniciar o preparo de alimentos, seguindo princípios de organização, limpeza e fluxo saudável.","etapas":[{"titulo":"Remover itens desnecessários","ferramenta":null,"url":null,"instrucao":"Retire todos os objetos da pia (pratos, talheres, esponjas, detergentes) e coloque-os em uma cesta ou bancada próxima. Avalie cada item segundo o critério de alegria/utilidade (KonMari) e devolva apenas o que será usado imediatamente.","acao":{"titulo":"Esvaziar a pia","texto":"Retirar todos os objetos da pia e colocá-los em uma cesta"},"lembrete":"Verifique se não há restos de alimentos aderidos à superfície antes de prosseguir."},{"titulo":"Limpeza profunda com 5s","ferramenta":"Tody","url":"https://www.todyapp.com","instrucao":"Aplique um desinfetante aprovado pela ANVISA (álcool 70% ou produto com registro) sobre toda a superfície da pia. Esfregue com esponja não abrasiva por cerca de 30 segundos, enxágue abundantemente com água morna e seque com pano de microfibra.","acao":{"titulo":"Desinfetar e secar","texto":"Aplicar desinfetante, esfregar, enxaguar e secar a pia"},"lembrete":"Evite produtos abrasivos em pias de inox para não riscar o acabamento."},{"titulo":"Organizar utensílios essenciais","ferramenta":"Sortly","url":"https://www.sortly.com","instrucao":"Posicione à mão os utensílios que serão usados: tábua de corte, facas, tigelas e medidores. Use organizadores de gaveta ou caixas etiquetadas para manter cada item em seu lugar definido (princípio Seiton do 5s).","acao":{"titulo":"Dispor utensílios","texto":"Colocar tábua de corte ao lado da pia e facas no bloco de facas"},"lembrete":"Mantenha a área livre de objetos que não serão utilizados imediatamente para evitar desordem."},{"titulo":"Verificação final e ajuste","ferramenta":"Google Calendar","url":"https://calendar.google.com","instrucao":"Faça uma inspeção visual: confirme que a pia está seca, sem resíduos e que o detergente e esponja estão disponíveis. Anote eventuais ajustes necessários (como troca de esponja) e programe uma revisão semanal no calendário.","acao":{"titulo":"Inspecionar e anotar","texto":"Passar pano microfibra seco e registrar observações no calendário"},"lembrete":"Registrar melhorias ajuda a adaptar o processo às mudanças da rotina familiar."}],"id":"p1786187800249"}]}]}],"biblioteca":[],"whiteLabelConfig":{"tipoLogo":"texto","logoUrl":"https://d1yei2z3i6k35z.cloudfront.net/3119789/69f59543269857.76143509_BetaLogoSEQLIST2.png","textoLogo":"EHO - Organização, leveza e praticidade","fonteLogo":"Outfit","tamanhoLogoPx":20,"corHex":"#3a5d64"},"prefs":{"tema":"custom","modo":"claro","corHex":"#3a5d64"},"_ts":"1786189085865"}</script>
+<script id="seqlist-data" type="application/json"></script>
 
 <script>
 // ═══════════════════════════════
@@ -1495,24 +1434,47 @@ async function carregarDadosDaNuvem() {
     if (response.ok) {
       const data = await response.json();
       if (data) {
-        if (data.clientes && Array.isArray(data.clientes)) {
-          clientes = data.clientes;
+        if (data.clientes && Array.isArray(data.clientes) && data.clientes.length > 0) {
+          // Fusão inteligente: mescla dados da nuvem com os dados locais sem apagar projetos/processos criados recentemente
+          data.clientes.forEach(cloudClient => {
+            const localIdx = clientes.findIndex(c => c.id === cloudClient.id || (c.nome && cloudClient.nome && c.nome.toLowerCase().trim() === cloudClient.nome.toLowerCase().trim()));
+            if (localIdx >= 0) {
+              const localClient = clientes[localIdx];
+              // Mescla projetos preservando os criados localmente
+              const projMap = new Map();
+              (cloudClient.projetos || []).forEach(p => projMap.set(p.id, p));
+              (localClient.projetos || []).forEach(p => {
+                if (!projMap.has(p.id)) {
+                  projMap.set(p.id, p);
+                } else {
+                  const cloudProj = projMap.get(p.id);
+                  const procMap = new Map();
+                  (cloudProj.processos || []).forEach(pr => procMap.set(pr.id, pr));
+                  (p.processos || []).forEach(pr => procMap.set(pr.id, pr));
+                  cloudProj.processos = Array.from(procMap.values());
+                }
+              });
+              cloudClient.projetos = Array.from(projMap.values());
+              clientes[localIdx] = Object.assign({}, localClient, cloudClient);
+            } else {
+              clientes.push(cloudClient);
+            }
+          });
           salvarClientes();
         }
-        if (data.biblioteca && Array.isArray(data.biblioteca)) {
-          biblioteca = data.biblioteca;
+        if (data.biblioteca && Array.isArray(data.biblioteca) && data.biblioteca.length > 0) {
+          const bibMap = new Map();
+          data.biblioteca.forEach(b => bibMap.set(b.id, b));
+          biblioteca.forEach(b => { if (!bibMap.has(b.id)) bibMap.set(b.id, b); });
+          biblioteca = Array.from(bibMap.values());
           salvarBiblioteca();
         }
-        if (data.admins && Array.isArray(data.admins)) {
-          admins = data.admins;
-          salvarAdmins();
-        }
-        console.log("[SEQLIST Nuvem] Dados carregados e sincronizados da nuvem com sucesso!");
+        console.log("[SEQLIST Nuvem] Fusão inteligente de clientes, projetos e processos concluída com sucesso!");
         return true;
       }
     }
   } catch (error) {
-    console.log("[SEQLIST Nuvem] Consulta de dados da nuvem mantida via fallback/local.");
+    console.log("[SEQLIST Nuvem] Consulta mantida no armazenamento local.");
   }
   return false;
 }
@@ -4491,7 +4453,7 @@ function exportarHTML(){
 
   // Se houver estilo de cor customizada Hex, injeta no head do HTML exportado
   if (whiteLabelConfig.corHex) {
-    const customCss = `<style id="seqlist-custom-style">:root { --accent: #3a5d64 !important; }</style>`;
+    const customCss = `<style id="seqlist-custom-style">:root { --accent: ${whiteLabelConfig.corHex} !important; }</style>`;
     if (h.includes('id="seqlist-custom-style"')) {
       h = h.replace(/<style id="seqlist-custom-style">[\s\S]*?<\/style>/i, customCss);
     } else {
@@ -4908,6 +4870,5 @@ carregarPrefs();
 carregarBiblioteca();
 navegar('acesso');
 </script>
-
-
-</body></html>
+</body>
+</html>
