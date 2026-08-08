@@ -4,7 +4,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>FNW EHO · Plataforma Master</title>
+<title>FNW SEQLIST MÃE · Plataforma Master</title>
 <script>
   (function(){
     try {
@@ -1435,27 +1435,42 @@ async function carregarDadosDaNuvem() {
       const data = await response.json();
       if (data) {
         if (data.clientes && Array.isArray(data.clientes) && data.clientes.length > 0) {
-          // Fusão inteligente: mescla dados da nuvem com os dados locais sem apagar projetos/processos criados recentemente
+          // Fusão inteligente: mescla dados da nuvem mantendo prioridade para edições locais recentes (nome, descrição, projetos)
           data.clientes.forEach(cloudClient => {
             const localIdx = clientes.findIndex(c => c.id === cloudClient.id || (c.nome && cloudClient.nome && c.nome.toLowerCase().trim() === cloudClient.nome.toLowerCase().trim()));
             if (localIdx >= 0) {
               const localClient = clientes[localIdx];
-              // Mescla projetos preservando os criados localmente
+              // Mescla projetos dando prioridade às edições locais em todas as colunas, linhas e etapas
               const projMap = new Map();
               (cloudClient.projetos || []).forEach(p => projMap.set(p.id, p));
-              (localClient.projetos || []).forEach(p => {
-                if (!projMap.has(p.id)) {
-                  projMap.set(p.id, p);
+              (localClient.projetos || []).forEach(localProj => {
+                if (!projMap.has(localProj.id)) {
+                  projMap.set(localProj.id, localProj);
                 } else {
-                  const cloudProj = projMap.get(p.id);
+                  const cloudProj = projMap.get(localProj.id);
+                  const mergedProj = Object.assign({}, cloudProj, localProj);
                   const procMap = new Map();
                   (cloudProj.processos || []).forEach(pr => procMap.set(pr.id, pr));
-                  (p.processos || []).forEach(pr => procMap.set(pr.id, pr));
-                  cloudProj.processos = Array.from(procMap.values());
+                  (localProj.processos || []).forEach(localProc => {
+                    if (!procMap.has(localProc.id)) {
+                      procMap.set(localProc.id, localProc);
+                    } else {
+                      const cloudProc = procMap.get(localProc.id);
+                      // Mescla o processo e prioriza as etapas/linhas/colunas editadas localmente (instrução, ação, lembrete, url)
+                      const mergedProc = Object.assign({}, cloudProc, localProc);
+                      if (localProc.etapas && Array.isArray(localProc.etapas) && localProc.etapas.length > 0) {
+                        mergedProc.etapas = localProc.etapas;
+                      }
+                      procMap.set(localProc.id, mergedProc);
+                    }
+                  });
+                  mergedProj.processos = Array.from(procMap.values());
+                  projMap.set(localProj.id, mergedProj);
                 }
               });
-              cloudClient.projetos = Array.from(projMap.values());
-              clientes[localIdx] = Object.assign({}, localClient, cloudClient);
+              const finalClient = Object.assign({}, cloudClient, localClient);
+              finalClient.projetos = Array.from(projMap.values());
+              clientes[localIdx] = finalClient;
             } else {
               clientes.push(cloudClient);
             }
@@ -1469,7 +1484,21 @@ async function carregarDadosDaNuvem() {
           biblioteca = Array.from(bibMap.values());
           salvarBiblioteca();
         }
-        console.log("[SEQLIST Nuvem] Fusão inteligente de clientes, projetos e processos concluída com sucesso!");
+        if (data.whiteLabelConfig) {
+          whiteLabelConfig = Object.assign(whiteLabelConfig, data.whiteLabelConfig);
+          localStorage.setItem('fnw-whitelabel', JSON.stringify(whiteLabelConfig));
+          if (whiteLabelConfig.corHex) {
+            aplicarCorPersonalizadaHex(whiteLabelConfig.corHex);
+          } else {
+            aplicarWhiteLabelConfig();
+          }
+        }
+        if (data.prefs) {
+          localStorage.setItem('fnw-prefs', JSON.stringify(data.prefs));
+          if (data.prefs.tema) setTema(data.prefs.tema);
+          if (data.prefs.modo) setModo(data.prefs.modo);
+        }
+        console.log("[SEQLIST Nuvem] Fusão inteligente de clientes, projetos, processos e marca White-Label concluída com sucesso!");
         return true;
       }
     }
@@ -1506,7 +1535,13 @@ const AppState = {
     return {
       clientes: clientes,
       biblioteca: biblioteca,
-      admins: admins
+      admins: admins,
+      whiteLabelConfig: whiteLabelConfig,
+      prefs: {
+        tema: root.getAttribute('data-tema') || 'chumbo',
+        modo: root.getAttribute('data-modo') || 'claro',
+        corHex: whiteLabelConfig.corHex || null
+      }
     };
   }
 };
@@ -1794,6 +1829,7 @@ function salvarWhiteLabelConfig() {
     localStorage.setItem('fnw-whitelabel', JSON.stringify(whiteLabelConfig));
   } catch (e) {}
   aplicarWhiteLabelConfig();
+  sincronizarComAPI(AppState.dados);
 }
 
 function carregarWhiteLabelConfig() {
@@ -3013,7 +3049,29 @@ function renderHubProjeto(){
   document.getElementById('hub-saudacao').innerHTML=`<span>${projetoObj.nome}</span>`;
   
   const subEl = document.querySelector('.hub-sub');
-  if(subEl) subEl.textContent = projetoObj.descricao || 'Escolha uma atividade/processo para começar.';
+  if(subEl) {
+    const podeEditar = nivelAcesso === 'total' || modoAdminGerenciaCliente;
+    subEl.textContent = projetoObj.descricao || (podeEditar ? 'Clique para adicionar uma descrição ao projeto...' : 'Escolha uma atividade/processo para começar.');
+    if(podeEditar){
+      subEl.contentEditable = 'true';
+      subEl.classList.add('editable');
+      subEl.title = 'Clique para editar a descrição deste projeto';
+      subEl.onblur = () => {
+        const novaDesc = subEl.innerText.trim();
+        projetoObj.descricao = novaDesc;
+        salvarClientes();
+      };
+      subEl.onkeydown = (e) => {
+        if(e.key === 'Enter' && !e.shiftKey){
+          e.preventDefault();
+          subEl.blur();
+        }
+      };
+    } else {
+      subEl.contentEditable = 'false';
+      subEl.classList.remove('editable');
+    }
+  }
 
   const hubHeader = document.querySelector('.hub-header');
   let btnNova = hubHeader ? hubHeader.querySelector('.btn-nova') : null;
